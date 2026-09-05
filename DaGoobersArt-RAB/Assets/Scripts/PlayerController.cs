@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip coinSFX;
     private AudioSource audioSource;
 
+    // UI
+    public GameObject winPanel;
+
 
     void Start()
     {
@@ -86,7 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.localScale.x <= 2.0f)
             {
-                transform.localScale *= 1.25f;    // increase scale by 25%
+                transform.localScale = new Vector3(5.0f, 5.0f, 5.0f); ;    // Set Large
             }
         }
 
@@ -94,25 +97,27 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.localScale.x >= 0.5f)
             {
-                transform.localScale *= 0.75f;     // decreases scale by 25%
+                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); ;     // Set Small
             }
         }
 
         if (other.gameObject.CompareTag("Jump"))
         {
-            rb.AddForce(new Vector3(0.0f, 300.0f, 0.0f));
+            rb.AddForce(new Vector3(0.0f, 500.0f, 0.0f));
         }
     }
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        if(count >= 5)
+        countText.text = "Count: " + count.ToString() + "/10";
+        if(count >= 10)
         {
             gameOver = true; // returns true value to signal game is over
             timeText.color = Color.green;  // changes timer's color
             winText.text = "You win!";
             speed = 0;
+
+            winPanel.SetActive(true);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
 
@@ -9,4 +10,13 @@ public class UIController : MonoBehaviour {
         print("Quit button was clicked");
         Application.Quit();
     }
+
+    public void OnClickPlayButton()
+    {
+        SceneManager.LoadScene("LevelOne");
+        Debug.Log("Play button pressed");
+    }
+
+
+
 }
